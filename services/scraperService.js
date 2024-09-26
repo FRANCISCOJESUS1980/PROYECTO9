@@ -29,12 +29,11 @@ const retrySelector = async (page, selector, retries = 3, timeout = 5000) => {
 }
 
 const siteConfigurations = {
-  mielectro: {
-    productItemSelector:
-      '.producto producto15582071 productoEtNC item itemProducto itemProductoM d-MTU1ODIwNzE_-d',
-    nameSelector: '.nombre nombregrid',
-    priceSelector: '.mod-precios-producto-centrar',
-    imageSelector: '.lazyloaded',
+  lacasadelelectrodomestico: {
+    productItemSelector: '.ecode_product_list',
+    nameSelector: '.ecode_product_images_tags',
+    priceSelector: '.ecode_product_price',
+    imageSelector: '.ecode_product_image ecode_false_link',
     nextPageSelector: '.a-pagination .a-last'
   },
   worten: {
@@ -138,8 +137,8 @@ const scrapeWebsite = async (urls, siteConfigs) => {
 }
 
 const urlsToScrape = {
-  mielectro:
-    'https://www.mielectro.es/lavado-secado-5477076/lavado-5388076/lavadoras-5390076/',
+  lacasadelelectrodomestico:
+    'https://www.lacasadelelectrodomestico.com/Seccion~x~Lavado-y-secado~IDSeccion~74.html',
   worten:
     'https://www.worten.es/productos/electrodomesticos/lavado-y-cuidado-de-la-ropa/lavadoras',
   electrocosto:
