@@ -4,28 +4,24 @@ const path = require('path')
 
 const siteConfigurations = {
   amazon: {
-    productItemSelector: '.s-main-slot .s-result-item',
-    nameSelector: 'span.a-size-medium.a-color-base.a-text-normal',
-    priceSelector: 'span.a-price-whole',
-    imageSelector: 'img.s-image',
-    nextPageSelector: '.a-pagination .a-last a'
+    nameSelector: '.p13n-sc-truncate-desktop-type2  .p13n-sc-truncated',
+    priceSelector: '._cDEzb_p13n-sc-price_3mJ9Z"',
+    imageSelector: '.a-dynamic-image p13n-sc-dynamic-image .p13n-product-image',
+    nextPageSelector: '.pagination-siguiente'
   },
   pccomponentes: {
-    productItemSelector: '.tarjeta-articulo',
     nameSelector: '.GTM-productClick.enlace-disimulado',
     priceSelector: '.precio-total',
     imageSelector: 'img.img-responsive',
     nextPageSelector: '.pagination-siguiente'
   },
   mediamarkt: {
-    productItemSelector: '.product-wrapper',
     nameSelector: '.product-title',
     priceSelector: '.price-wrapper',
     imageSelector: 'img.product-image',
     nextPageSelector: '.pagination-next'
   },
   tien21: {
-    productItemSelector: '.product-item',
     nameSelector: '.product-item-title',
     priceSelector: '.product-item-price',
     imageSelector: '.product-item-img img',
