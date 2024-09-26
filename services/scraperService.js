@@ -1,49 +1,112 @@
 const puppeteer = require('puppeteer')
 const fs = require('fs')
-const { logger } = require('../utils/logger')
+const path = require('path')
 
-async function scrapeWebsite() {
+const siteConfigurations = {
+  amazon: {
+    productItemSelector: '.s-main-slot .s-result-item',
+    nameSelector: 'span.a-size-medium.a-color-base.a-text-normal',
+    priceSelector: 'span.a-price-whole',
+    imageSelector: 'img.s-image',
+    nextPageSelector: '.a-pagination .a-last a'
+  },
+  pccomponentes: {
+    productItemSelector: '.tarjeta-articulo',
+    nameSelector: '.GTM-productClick.enlace-disimulado',
+    priceSelector: '.precio-total',
+    imageSelector: 'img.img-responsive',
+    nextPageSelector: '.pagination-siguiente'
+  },
+  mediamarkt: {
+    productItemSelector: '.product-wrapper',
+    nameSelector: '.product-title',
+    priceSelector: '.price-wrapper',
+    imageSelector: 'img.product-image',
+    nextPageSelector: '.pagination-next'
+  },
+  tien21: {
+    productItemSelector: '.product-item',
+    nameSelector: '.product-item-title',
+    priceSelector: '.product-item-price',
+    imageSelector: '.product-item-img img',
+    nextPageSelector: '.next'
+  }
+}
+
+const scrapePage = async (page, url, config) => {
+  await page.goto(url, { waitUntil: 'load', timeout: 0 })
+
+  await page.evaluate(() => {
+    const modal = document.querySelector('.modal-class')
+    if (modal) modal.remove()
+  })
+
+  const products = await page.evaluate((config) => {
+    const productList = []
+    document.querySelectorAll(config.productItemSelector).forEach((product) => {
+      const name = product.querySelector(config.nameSelector)?.innerText
+      const price = product.querySelector(config.priceSelector)?.innerText
+      const image = product.querySelector(config.imageSelector)?.src
+
+      if (name && price && image) {
+        productList.push({
+          name,
+          price,
+          image
+        })
+      }
+    })
+    return productList
+  }, config)
+
+  return products
+}
+
+const scrapeWebsite = async (urls, siteConfigs) => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  const allProducts = []
-  const urls = [
-    'https://www.amazon.es/gp/bestsellers/?ref_=nav_cs_bestsellers',
-    'https://www.pccomponentes.com/?s_kwcid=AL!14405!3!600262053045!e!!g!!pc%20componentes&gad_source=1&gclid=CjwKCAjw6c63BhAiEiwAF0EH1BVyKRQBXpOgp9DayqdSEfCdtdvulikeH_yra8NZ-aRiQYc6_6ySZRoCDNYQAvD_BwE',
-    'https://www.mediamarkt.es/es/category/electrodom%C3%A9sticos-553.html',
-    'https://www.tien21.es/?srsltid=AfmBOooRB0-EeL9URaSmNYOTHkMkZ7ihZBnfJbWLYvzHgFRYx-dz9s-M'
-  ]
 
-  for (const url of urls) {
-    await page.goto(url, { waitUntil: 'networkidle2' })
+  let allProducts = []
 
-    let productsOnPage = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('.product')).map(
-        (product) => ({
-          name: product.querySelector('.product-name').textContent,
-          price: product.querySelector('.product-price').textContent,
-          image: product.querySelector('.product-image img').src
-        })
+  for (const [site, url] of Object.entries(urls)) {
+    const config = siteConfigs[site]
+    console.log(`Scraping URL: ${url} (sitio: ${site})`)
+
+    let hasNextPage = true
+    let currentPage = 1
+
+    while (hasNextPage) {
+      const fullUrl = `${url}?page=${currentPage}`
+      const products = await scrapePage(page, fullUrl, config)
+      allProducts = allProducts.concat(products)
+
+      console.log(
+        `Página ${currentPage} scrapeada para ${site}. Productos obtenidos: ${products.length}`
       )
-    })
 
-    allProducts.push(...productsOnPage)
+      hasNextPage = await page.evaluate((config) => {
+        const nextButton = document.querySelector(config.nextPageSelector)
+        return nextButton !== null && !nextButton.classList.contains('disabled')
+      }, config)
+
+      currentPage++
+    }
   }
 
   await browser.close()
-  return allProducts
+
+  const filePath = path.join(__dirname, '../public/products.json')
+  fs.writeFileSync(filePath, JSON.stringify(allProducts, null, 2), 'utf-8')
+
+  console.log(`Scraping completado. Productos guardados en ${filePath}`)
 }
 
-async function scrapeAndSave() {
-  try {
-    const products = await scrapeWebsite()
-    fs.writeFileSync(
-      './public/products.json',
-      JSON.stringify(products, null, 2)
-    )
-    logger.info('Scraping completado y datos guardados en products.json')
-  } catch (error) {
-    logger.error('Error durante el scraping:', error)
-  }
+const urlsToScrape = {
+  amazon: 'https://www.amazon.es/gp/bestsellers/?ref_=nav_cs_bestsellers',
+  pccomponentes: 'https://www.pccomponentes.com/buscar?q=portatiles',
+  mediamarkt:
+    'https://www.mediamarkt.es/es/category/electrodom%C3%A9sticos-553.html',
+  tien21: 'https://www.tien21.es/electrodomesticos'
 }
 
-module.exports = { scrapeAndSave }
+scrapeWebsite(urlsToScrape, siteConfigurations)

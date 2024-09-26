@@ -1,61 +1,41 @@
-const productModel = require('../models/productModel')
-//const { validationResult } = require('express-validator')
-const { logger } = require('../utils/logger')
+const Product = require('../models/productModel')
 
-const getProducts = (req, res) => {
-  productModel.getAllProducts((err, results) => {
-    if (err) {
-      logger.error('Error al obtener productos: ', err)
-      return res.status(500).json({ error: 'Error al obtener productos' })
-    }
-    res.json(results)
-  })
-}
-
-const insertProducts = (req, res) => {
-  const products = require('../public/products.json')
-  products.forEach((product) => {
-    productModel.insertProduct(product, (err) => {
-      if (err) {
-        logger.error('Error al insertar productos: ', err)
-        return res.status(500).json({ error: 'Error al insertar productos' })
-      }
-    })
-  })
-  res.send('Productos insertados correctamente')
-}
-
-const updateProduct = (req, res) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() })
+exports.getProducts = async (req, res) => {
+  try {
+    const products = await Product.find()
+    res.status(200).json(products)
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener productos', error })
   }
-
-  const id = req.params.id
-  const productData = req.body
-  productModel.updateProduct(id, productData, (err) => {
-    if (err) {
-      logger.error('Error al actualizar producto: ', err)
-      return res.status(500).json({ error: 'Error al actualizar producto' })
-    }
-    res.send('Producto actualizado correctamente')
-  })
 }
 
-const deleteProduct = (req, res) => {
-  const id = req.params.id
-  productModel.deleteProduct(id, (err) => {
-    if (err) {
-      logger.error('Error al eliminar producto: ', err)
-      return res.status(500).json({ error: 'Error al eliminar producto' })
-    }
-    res.send('Producto eliminado correctamente')
-  })
+exports.createProducts = async (req, res) => {
+  try {
+    const products = await Product.insertMany(req.body)
+    res.status(201).json(products)
+  } catch (error) {
+    res.status(500).json({ message: 'Error al crear productos', error })
+  }
 }
 
-module.exports = {
-  getProducts,
-  insertProducts,
-  updateProduct,
-  deleteProduct
+exports.updateProduct = async (req, res) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    )
+    res.status(200).json(updatedProduct)
+  } catch (error) {
+    res.status(500).json({ message: 'Error al actualizar producto', error })
+  }
+}
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id)
+    res.status(200).json({ message: 'Producto eliminado' })
+  } catch (error) {
+    res.status(500).json({ message: 'Error al eliminar producto', error })
+  }
 }

@@ -1,20 +1,14 @@
-const mysql = require('mysql')
+const mongoose = require('mongoose')
 const { logger } = require('../utils/logger')
-require('dotenv').config()
 
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-})
-
-connection.connect((err) => {
-  if (err) {
-    logger.error('Error conectando a la bbdd', err)
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.DB_URL)
+    logger.info(`MongoDB connected: ${conn.connection.host}`)
+  } catch (error) {
+    logger.error(`Error: ${error.message}`)
     process.exit(1)
   }
-  logger.info('Conectado a la base de datos MySQL')
-})
+}
 
-module.exports = connection
+module.exports = connectDB
