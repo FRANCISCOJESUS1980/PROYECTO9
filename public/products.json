@@ -1,6 +1,251 @@
 [
   {
     "name": "Nombre no disponible",
+    "price": "509€\n379€",
+    "image": "https://www.mielectro.es/rep/7e92/1280960040/205/logo-listado-lgjpg.jpg"
+  },
+  {
+    "name": "Lavadora BOSCH WUU28T63ES (8 kg - 1400 rpm -Blanco)",
+    "price": "€\n449\n,\n99\nPVPr \n€\n655,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora HISENSE WFQP8014EVM (8 kg - 1400 rpm - Blanco)",
+    "price": "€\n339\n,\n99\nPVPr \n€\n439,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BOSCH WUU28T8XES (8 kg - 1400 rpm - Inox)",
+    "price": "€\n529\n,\n99\nPVPr \n€\n755,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BOSCH WAN28201EP (9 kg - 1400 rpm - Blanco)",
+    "price": "€\n479\n,\n99\nPVPr \n€\n649,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F2WR5S09A0W (9 kg - 1200 rpm - Blanco)",
+    "price": "€\n428\n,\n00\nPVPr \n€\n549,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BOSCH WAN24267ES (8 kg- 1200 rpm - Blanco)",
+    "price": "€\n379\n,\n99\nPVPr \n€\n559,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora AEG LFR7184N2V (8 kg - 1400 rpm - Blanco)",
+    "price": "€\n499\n,\n99\nPVPr \n€\n749,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora KUBO KWM8807 (7kg - 1200 rpm - Blanco)",
+    "price": "€\n199\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora KUBO KBWM9052 WH (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n279\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora KUBO 8KG KBWM9050 IX (8 kg - 1400 rpm - Inox)",
+    "price": "€\n269\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora KUBO KBWM8992 (6 kg - 1000 rpm - Blanco)",
+    "price": "€\n199\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora INDESIT EWC 61050 (6 Kg - 1200 rpm - Blanco)",
+    "price": "€\n239\n,\n99\nPVPr \n€\n325,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BECKEN BWM8261 (8 kg - 1300 rpm - Blanco)",
+    "price": "€\n296\n,\n97\n€\n549,99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora SAMSUNG WW80CGC04DTEEC (8 kg - 1400 rpm - Blanco)",
+    "price": "€\n389\n,\n99\nPVPr \n€\n569,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BOSCH WGG254Z1ES (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n519\n,\n99\nPVPr \n€\n815,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F4WT2009S3W (9 kg - 1400 rpm - Blanco)",
+    "price": "€\n399\n,\n99\nPVPr \n€\n499,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BALAY 3TS273BA (7 kg - 1200 rpm - Blanco)",
+    "price": "€\n399\n,\n99\nPVPr \n€\n549,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora KUBO KBWM8995 (9 kg - 1400 rpm - Blanco)",
+    "price": "€\n259\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora HISENSE WFVB7012EM (7Kg - 1200 rpm - Blanco)",
+    "price": "€\n280\n,\n59\nPVPr \n€\n389,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora SAMSUNG WW90T504DAWCS3 (9 kg - 1400 rpm - Blanco)",
+    "price": "€\n399\n,\n99\nPVPr \n€\n679,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F4WR5009A6M (9 kg - 1400 rpm - Gris)",
+    "price": "€\n469\n,\n99\nPVPr \n€\n599,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora SAMSUNG WW90T534DAE AutoDosificación (9 kg - 1400 rpm - Blanco)",
+    "price": "€\n459\n,\n99\nPVPr \n€\n679,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F2WT2008S3W (8 kg - 1200 rpm - Blanco)",
+    "price": "€\n359\n,\n99\nPVPr \n€\n479,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F4WR6010A0W (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n499\n,\n99\nPVPr \n€\n629,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F2WR5S08AGW (8 Kg - 1200 rpm - Blanco)",
+    "price": "€\n439\n,\n99\nPVPr \n€\n499,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BALAY 3TS993BP (9kg - 1200 rpm - Blanco)",
+    "price": "€\n449\n,\n99\nPVPr \n€\n659,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora WHIRLPOOL FFB 8469 BVSPT (8 kg - 1400 rpm - Blanco)",
+    "price": "€\n359\n,\n99\nPVPr \n€\n519,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora AEG Prosense LFR6114O2B (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n469\n,\n99\nPVPr \n€\n699,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F4WR6013AGW (13 kg - 1400 rpm - Blanco)",
+    "price": "€\n619\n,\n99\nPVPr \n€\n749,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BALAY 3TS3106B (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n499\n,\n99\nPVPr \n€\n669,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BALAY 3TS282B (8 kg - 1200 rpm - Blanco)",
+    "price": "€\n439\n,\n99\nPVPr \n€\n539,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora SAMSUNG WW11BGA046TEEC (11 Kg - 1400 rpm - Blanco)",
+    "price": "€\n449\n,\n99\nPVPr \n€\n799,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora HISENSE WFQP901418VM (9 kg - 1400 rpm - Blanco)",
+    "price": "€\n339\n,\n99\nPVPr \n€\n459,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora INDESIT BWE 101496X WS SPT N 1 (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n399\n,\n99\nPVPr \n€\n569,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F4WR6010A1W (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n499\n,\n99\nPVPr \n€\n629,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora INDESIT BWE 91496X WSV SPT (9 kg - 1400 rpm - Blanco)",
+    "price": "€\n369\n,\n99\nPVPr \n€\n539,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora Carga Superior CANDY CSTG282D2/1-S (8 Kg - 1200 rpm - Blanco)",
+    "price": "€\n339\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BOSCH WGG254ZXES (10 kg - 1400 rpm - Inox)",
+    "price": "€\n579\n,\n99\nPVPr \n€\n815,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora AEG LFA6I8272A (8 kg - 1200 rpm - Blanco)",
+    "price": "€\n399\n,\n99\nPVPr \n€\n609,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BALAY AutoDosificación 3TS3106BD (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n579\n,\n99\nPVPr \n€\n789,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora BECKEN BWM9172 (8 kg - 1300 rpm - Blanco)",
+    "price": "€\n399\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora HISENSE WFQA1014EVJMW (10 kg - 1400 rpm - Blanco)",
+    "price": "€\n419\n,\n99\nPVPr \n€\n589,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora AEG LTN6K7210B (7 kg - 1200 rpm - Blanco)",
+    "price": "€\n479\n,\n99\nPVPr \n€\n669,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora INDESIT BTW L60400 SP/N (6 kg - 1000 rpm - Blanco)",
+    "price": "€\n329\n,\n99\nPVPr \n€\n429,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora INDESIT BTW S72200 SP/N 7 (7 kg - 1200 rpm - Blanco)",
+    "price": "€\n398\n,\n99\nPVPr \n€\n559,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora WHIRLPOOL AWE 70122 (7 kg - 1200 rpm - Blanco)",
+    "price": "€\n399\n,\n99",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora LG F4WR5509A1W (11 kg - 1400 rpm - Blanco)",
+    "price": "€\n579\n,\n99\nPVPr \n€\n679,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Lavadora WHIRLPOOL TDLR 65230SS SP/N (6.5 kg - 1200 rpm - Blanco)",
+    "price": "€\n369\n,\n99\nPVPr \n€\n529,00",
+    "image": "Imagen no disponible"
+  },
+  {
+    "name": "Nombre no disponible",
     "price": "299\n,00\n€\nANTES\n449,00 €",
     "image": "Imagen no disponible"
   },

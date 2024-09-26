@@ -29,18 +29,19 @@ const retrySelector = async (page, selector, retries = 3, timeout = 5000) => {
 }
 
 const siteConfigurations = {
-  amazon: {
-    productItemSelector: '.zg-item-immersion',
-    nameSelector: '.p13n-sc-truncate',
-    priceSelector: '.p13n-sc-price',
-    imageSelector: '.a-dynamic-image',
+  mielectro: {
+    productItemSelector:
+      '.producto producto15582071 productoEtNC item itemProducto itemProductoM d-MTU1ODIwNzE_-d',
+    nameSelector: '.nombre nombregrid',
+    priceSelector: '.mod-precios-producto-centrar',
+    imageSelector: '.lazyloaded',
     nextPageSelector: '.a-pagination .a-last'
   },
-  pccomponentes: {
-    productItemSelector: '.tarjeta-producto',
-    nameSelector: '.tarjeta-producto__nombre',
-    priceSelector: '.tarjeta-producto__precio',
-    imageSelector: '.tarjeta-producto__imagen img',
+  worten: {
+    productItemSelector: '.product-card__text-container',
+    nameSelector: '.produc-card__name__link',
+    priceSelector: '.price__container',
+    imageSelector: '.product-card__image',
     nextPageSelector: '.pagination-next'
   },
   electrocosto: {
@@ -137,8 +138,10 @@ const scrapeWebsite = async (urls, siteConfigs) => {
 }
 
 const urlsToScrape = {
-  // amazon: 'https://www.amazon.es/gp/bestsellers/?ref_=nav_cs_bestsellers',
-  // pccomponentes: 'https://www.pccomponentes.com/buscar?q=portatiles',
+  mielectro:
+    'https://www.mielectro.es/lavado-secado-5477076/lavado-5388076/lavadoras-5390076/',
+  worten:
+    'https://www.worten.es/productos/electrodomesticos/lavado-y-cuidado-de-la-ropa/lavadoras',
   electrocosto:
     'https://www.electrocosto.com/?srsltid=AfmBOopcwIJdckQyDPBvqZJKamNt7z_kGL0HEmGar9SWnoi1wGM5tWtl',
   tien21: 'https://www.tien21.es/imagen/tv.html'
