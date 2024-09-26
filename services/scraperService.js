@@ -22,7 +22,7 @@ const retrySelector = async (page, selector, retries = 3, timeout = 5000) => {
       console.warn(
         `Reintento ${i + 1}/${retries} fallido para el selector: ${selector}`
       )
-      await page.waitForTimeout(1000)
+      await new Promise((resolve) => setTimeout(resolve, 1000))
     }
   }
   return false
@@ -43,10 +43,10 @@ const siteConfigurations = {
     imageSelector: '.tarjeta-producto__imagen img',
     nextPageSelector: '.pagination-next'
   },
-  mediamarkt: {
-    productItemSelector: '.product-wrapper',
-    nameSelector: '.product-title',
-    priceSelector: '.price',
+  electrocosto: {
+    productItemSelector: '.recomender-block-item',
+    nameSelector: '.precomender-block-item-title',
+    priceSelector: '.recomender-block-item-price',
     imageSelector: '.product-image img',
     nextPageSelector: '.pagination-next'
   },
@@ -137,9 +137,10 @@ const scrapeWebsite = async (urls, siteConfigs) => {
 }
 
 const urlsToScrape = {
-  amazon: 'https://www.amazon.es/gp/bestsellers/?ref_=nav_cs_bestsellers',
-  pccomponentes: 'https://www.pccomponentes.com/buscar?q=portatiles',
-  mediamarkt: 'https://www.mediamarkt.es/es/category/lavadoras-671.html',
+  // amazon: 'https://www.amazon.es/gp/bestsellers/?ref_=nav_cs_bestsellers',
+  // pccomponentes: 'https://www.pccomponentes.com/buscar?q=portatiles',
+  electrocosto:
+    'https://www.electrocosto.com/?srsltid=AfmBOopcwIJdckQyDPBvqZJKamNt7z_kGL0HEmGar9SWnoi1wGM5tWtl',
   tien21: 'https://www.tien21.es/imagen/tv.html'
 }
 
