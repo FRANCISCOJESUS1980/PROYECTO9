@@ -34,28 +34,28 @@ const siteConfigurations = {
     nameSelector: '.ecode_product_images_tags',
     priceSelector: '.ecode_product_price',
     imageSelector: '.ecode_product_image ecode_false_link',
-    nextPageSelector: '.a-pagination .a-last'
+    nextPageSelector: '.ecode_pagination'
   },
   worten: {
     productItemSelector: '.product-card__text-container',
     nameSelector: '.produc-card__name__link',
     priceSelector: '.price__container',
     imageSelector: '.product-card__image',
-    nextPageSelector: '.pagination-next'
+    nextPageSelector: '.numbers-pagination__link'
   },
   electrocosto: {
     productItemSelector: '.recomender-block-item',
     nameSelector: '.precomender-block-item-title',
     priceSelector: '.recomender-block-item-price',
     imageSelector: '.product-image img',
-    nextPageSelector: '.pagination-next'
+    nextPageSelector: '.pagination-next a'
   },
   tien21: {
     productItemSelector: '.c-product-list-list__item',
     nameSelector: '.product-name',
     priceSelector: '.price',
     imageSelector: 'img',
-    nextPageSelector: '.pagination-next'
+    nextPageSelector: '.pagination-next a'
   }
 }
 
@@ -107,25 +107,48 @@ const scrapeWebsite = async (urls, siteConfigs) => {
     console.log(`Scraping URL: ${url} (sitio: ${site})`)
 
     let hasNextPage = true
-    let currentPage = 1
+    let currentPageUrl = url
 
     while (hasNextPage) {
-      const fullUrl = `${url}?page=${currentPage}`
-      console.log(`Scrapeando página ${currentPage} en ${site}`)
+      console.log(`Scrapeando página ${currentPageUrl} en ${site}`)
 
-      const products = await scrapePage(page, fullUrl, config)
+      const products = await scrapePage(page, currentPageUrl, config)
       allProducts = allProducts.concat(products)
 
+      if (products.length === 0) {
+        console.log(
+          `No se encontraron productos en la página. Deteniendo el scraping para ${site}.`
+        )
+        break
+      }
+
       console.log(
-        `Página ${currentPage} scrapeada para ${site}. Productos obtenidos: ${products.length}`
+        `Página scrapeada para ${site}. Productos obtenidos: ${products.length}`
       )
 
       hasNextPage = await page.evaluate((config) => {
         const nextButton = document.querySelector(config.nextPageSelector)
-        return nextButton && !nextButton.classList.contains('disabled')
+        return nextButton && nextButton.href ? nextButton.href : null
       }, config)
 
-      currentPage++
+      if (hasNextPage) {
+        currentPageUrl = hasNextPage
+        try {
+          console.log(`Avanzando a la siguiente página (${currentPageUrl})...`)
+          await page.goto(currentPageUrl, {
+            waitUntil: 'networkidle2',
+            timeout: 90000
+          })
+        } catch (error) {
+          console.error(
+            'Error al navegar a la siguiente página:',
+            error.message
+          )
+          hasNextPage = false
+        }
+      } else {
+        console.log('No hay más páginas.')
+      }
     }
   }
 
