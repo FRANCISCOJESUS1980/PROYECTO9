@@ -31,23 +31,23 @@ const retrySelector = async (page, selector, retries = 3, timeout = 5000) => {
 const siteConfigurations = {
   lacasadelelectrodomestico: {
     productItemSelector: '.ecode_product_list',
-    nameSelector: '.ecode_product_images_tags',
+    nameSelector: 'h3 a',
     priceSelector: '.ecode_product_price',
-    imageSelector: '.ecode_product_image ecode_false_link',
-    nextPageSelector: '.ecode_pagination'
+    imageSelector: 'article figure img',
+    nextPageSelector: '.ecode_products_pagination'
   },
   worten: {
     productItemSelector: '.product-card__text-container',
     nameSelector: '.produc-card__name__link',
     priceSelector: '.price__container',
     imageSelector: '.product-card__image',
-    nextPageSelector: '.numbers-pagination__link'
+    nextPageSelector: '.numbers-pagination .listing-content__numbers-pagination'
   },
   electrocosto: {
     productItemSelector: '.recomender-block-item',
-    nameSelector: '.precomender-block-item-title',
-    priceSelector: '.recomender-block-item-price',
-    imageSelector: '.product-image img',
+    nameSelector: '.x-small x-ellipsis .x-margin--top-02',
+    priceSelector: '.x-currency',
+    imageSelector: '.x-result-picture-image .x-picture-image',
     nextPageSelector: '.pagination-next a'
   },
   tien21: {
@@ -128,7 +128,10 @@ const scrapeWebsite = async (urls, siteConfigs) => {
 
       hasNextPage = await page.evaluate((config) => {
         const nextButton = document.querySelector(config.nextPageSelector)
-        return nextButton && nextButton.href ? nextButton.href : null
+        if (nextButton) {
+          return nextButton.href || nextButton.getAttribute('href')
+        }
+        return null
       }, config)
 
       if (hasNextPage) {
@@ -165,7 +168,7 @@ const urlsToScrape = {
   worten:
     'https://www.worten.es/productos/electrodomesticos/lavado-y-cuidado-de-la-ropa/lavadoras',
   electrocosto:
-    'https://www.electrocosto.com/?srsltid=AfmBOopcwIJdckQyDPBvqZJKamNt7z_kGL0HEmGar9SWnoi1wGM5tWtl',
+    'https://www.electrocosto.com/?srsltid=AfmBOopcwIJdckQyDPBvqZJKamNt7z_kGL0HEmGar9SWnoi1wGM5tWtl&query=lavadoras',
   tien21: 'https://www.tien21.es/imagen/tv.html'
 }
 
