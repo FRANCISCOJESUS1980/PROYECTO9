@@ -34,14 +34,14 @@ const siteConfigurations = {
     nameSelector: 'h3 a',
     priceSelector: '.ecode_product_price',
     imageSelector: 'article figure img',
-    nextPageSelector: '#ecode_products_pagination'
+    nextPageSelector: '.ecode_pagination'
   },
   worten: {
     productItemSelector: '.product-card__text-container',
     nameSelector: '.produc-card__name__link',
     priceSelector: '.price__container .value',
     imageSelector: 'img',
-    nextPageSelector: '.numbers-pagination__icons'
+    nextPageSelector: '.numbers-pagination .listing-content__numbers-pagination'
   },
   electrocosto: {
     productItemSelector: 'li article',
@@ -126,21 +126,25 @@ const scrapeWebsite = async (urls, siteConfigs) => {
         `Página scrapeada para ${site}. Productos obtenidos: ${products.length}`
       )
 
-      hasNextPage = await page.evaluate((config) => {
+      const nextPageUrl = await page.evaluate((config) => {
         const nextButton = document.querySelector(config.nextPageSelector)
-        if (nextButton) {
-          return nextButton.href || nextButton.getAttribute('href')
-        }
-        return null
+        return nextButton
+          ? nextButton.href || nextButton.getAttribute('href')
+          : null
       }, config)
 
-      if (hasNextPage) {
-        currentPageUrl = hasNextPage
+      if (nextPageUrl) {
+        currentPageUrl = nextPageUrl
         try {
-          console.log(`Avanzando a la siguiente página (${currentPageUrl})...`)
+          console.log(`Avanzando a la siguiente página...`)
+
           await page.goto(currentPageUrl, {
             waitUntil: 'networkidle2',
             timeout: 90000
+          })
+
+          await page.waitForSelector(config.productItemSelector, {
+            timeout: 10000
           })
         } catch (error) {
           console.error(
@@ -151,10 +155,10 @@ const scrapeWebsite = async (urls, siteConfigs) => {
         }
       } else {
         console.log('No hay más páginas.')
+        hasNextPage = false
       }
     }
   }
-
   await browser.close()
 
   const filePath = path.join(__dirname, '../public/products.json')
