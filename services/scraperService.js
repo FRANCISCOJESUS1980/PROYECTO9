@@ -34,26 +34,26 @@ const siteConfigurations = {
     nameSelector: 'h3 a',
     priceSelector: '.ecode_product_price',
     imageSelector: 'article figure img',
-    nextPageSelector: '.ecode_products_pagination'
+    nextPageSelector: '#ecode_products_pagination'
   },
   worten: {
     productItemSelector: '.product-card__text-container',
     nameSelector: '.produc-card__name__link',
-    priceSelector: '.price__container',
-    imageSelector: '.product-card__image',
-    nextPageSelector: '.numbers-pagination .listing-content__numbers-pagination'
+    priceSelector: '.price__container .value',
+    imageSelector: 'img',
+    nextPageSelector: '.numbers-pagination__icons'
   },
   electrocosto: {
-    productItemSelector: '.recomender-block-item',
-    nameSelector: '.x-small x-ellipsis .x-margin--top-02',
+    productItemSelector: 'li article',
+    nameSelector: 'article h2',
     priceSelector: '.x-currency',
-    imageSelector: '.x-result-picture-image .x-picture-image',
+    imageSelector: 'img',
     nextPageSelector: '.pagination-next a'
   },
   tien21: {
     productItemSelector: '.c-product-list-list__item',
-    nameSelector: '.product-name',
-    priceSelector: '.price',
+    nameSelector: 'h2 a',
+    priceSelector: 'span .c-product-list-list__item-footer-price',
     imageSelector: 'img',
     nextPageSelector: '.pagination-next a'
   }
