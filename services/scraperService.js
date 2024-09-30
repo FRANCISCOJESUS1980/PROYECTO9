@@ -29,13 +29,6 @@ const retrySelector = async (page, selector, retries = 3, timeout = 5000) => {
 }
 
 const siteConfigurations = {
-  lacasadelelectrodomestico: {
-    productItemSelector: '.ecode_product_list',
-    nameSelector: 'h3 a',
-    priceSelector: '.ecode_product_price',
-    imageSelector: 'article figure img',
-    nextPageSelector: 'section p a'
-  },
   worten: {
     productItemSelector: '.product-card__text-container',
     nameSelector: '.produc-card__name__link',
@@ -167,8 +160,6 @@ const scrapeWebsite = async (urls, siteConfigs) => {
 }
 
 const urlsToScrape = {
-  lacasadelelectrodomestico:
-    'https://www.lacasadelelectrodomestico.com/Seccion~x~Lavado-y-secado~IDSeccion~74.html',
   worten:
     'https://www.worten.es/productos/electrodomesticos/lavado-y-cuidado-de-la-ropa/lavadoras',
   electrocosto:
