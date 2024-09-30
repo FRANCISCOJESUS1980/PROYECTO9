@@ -34,7 +34,7 @@ const siteConfigurations = {
     nameSelector: 'h3 a',
     priceSelector: '.ecode_product_price',
     imageSelector: 'article figure img',
-    nextPageSelector: '.ecode_pagination'
+    nextPageSelector: 'section p a'
   },
   worten: {
     productItemSelector: '.product-card__text-container',
