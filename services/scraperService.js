@@ -3,13 +3,31 @@ const fs = require('fs')
 const path = require('path')
 
 const closeModalIfExists = async (page) => {
-  try {
-    const modalSelector = '.modal-close-button'
-    await page.waitForSelector(modalSelector, { timeout: 5000 })
-    await page.click(modalSelector)
-    console.log('Modal cerrado')
-  } catch (error) {
-    console.log('No se encontró ningún modal')
+  const modalSelectors = [
+    '.modal-close-button',
+    '.popup-close',
+    '.cookie-consent-close',
+    '.close-modal',
+    '[aria-label="Close"]',
+    '.btn-close',
+    '.close',
+    '.cn_content_close-9fe27e64-7693-4af0-aaa3-24635005916e'
+  ]
+
+  for (const selector of modalSelectors) {
+    let isModalOpen = true
+
+    while (isModalOpen) {
+      try {
+        await page.waitForSelector(selector, { timeout: 3000 })
+
+        await page.click(selector)
+        console.log(`Modal cerrado con selector: ${selector}`)
+      } catch (error) {
+        console.log(`No se encontró modal con el selector: ${selector}`)
+        isModalOpen = false
+      }
+    }
   }
 }
 
